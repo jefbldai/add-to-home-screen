@@ -1,3 +1,4 @@
+const appName = "App Name";
 const template = document.createElement("template");
 template.innerHTML = `
 <style>
@@ -134,12 +135,11 @@ template.innerHTML = `
 <path d="M64.1628 66.4884C64.1628 65.204 65.204 64.1628 66.4884 64.1628H88.0001C89.2844 64.1628 90.3256 65.204 90.3256 66.4884V88C90.3256 89.2844 89.2844 90.3256 88.0001 90.3256H66.4884C65.204 90.3256 64.1628 89.2844 64.1628 88V66.4884Z" fill="#30B0C7"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M53.9884 65.3256C53.9884 58.7431 59.3245 53.407 65.907 53.407H89.1628C95.7453 53.407 101.081 58.7431 101.081 65.3256V88.5814C101.081 95.1639 95.7453 100.5 89.1628 100.5H65.907C59.3245 100.5 53.9884 95.1639 53.9884 88.5814V65.3256ZM65.907 58.6395C62.2144 58.6395 59.221 61.633 59.221 65.3256V88.5814C59.221 92.274 62.2144 95.2674 65.907 95.2674H89.1628C92.8554 95.2674 95.8489 92.274 95.8489 88.5814V65.3256C95.8489 61.633 92.8554 58.6395 89.1628 58.6395H65.907Z" fill="#30B0C7"/>
 </svg>
-
 </svg>
 
 
 <div>
-Add <strong>Launch</strong> to your Home Screen for the best experience and to get regular updates.
+Add <strong>${appName}</strong> to your Home Screen for the best experience and to get regular updates.
   Tap <strong>Share</strong>
 
   <svg id="share" width="17" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.303 5.003 8.029 1.729 4.756 5.003l-.865-.865L8.029 0l4.138 4.138-.864.865Z" fill="#3478F6"/><path d="M7.412.865h1.235v12.97H7.41V.865Z" fill="#3478F6"/><path d="M14.205 21.246H1.853A1.82 1.82 0 0 1 0 19.393V8.276a1.82 1.82 0 0 1 1.853-1.853h4.323V7.66H1.853c-.37 0-.618.247-.618.617v11.117c0 .371.247.618.618.618h12.352c.37 0 .618-.247.618-.618V8.276c0-.37-.247-.617-.618-.617H9.882V6.423h4.323a1.82 1.82 0 0 1 1.853 1.853v11.117a1.82 1.82 0 0 1-1.853 1.853Z" fill="#3478F6"/></svg>
@@ -191,17 +191,6 @@ export default class AddToHomeScreen extends HTMLElement {
   }
 
   connectedCallback() {
-    // const ua = window.navigator.userAgent;
-    // const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-    // const webkit = !!ua.match(/WebKit/i);
-    // const isNativeApp = window.navigator.userAgent.includes("gonative");
-    // console.log(isNativeApp);
-    // const iOSSafari =
-    //   iOS &&
-    //   webkit &&
-    //   !ua.match(/CriOS/i) &&
-    //   !!ua.match(/Safari/i) &&
-    //   !isNativeApp;
     const ua = window.navigator.userAgent;
     const iOS = !!ua.match(/iPad|iPhone|iPod/i);
     const webkit = !!ua.match(/WebKit/i);
@@ -212,8 +201,7 @@ export default class AddToHomeScreen extends HTMLElement {
     console.log(
       `iOS: ${iOS}, Webkit: ${webkit}, isSafari: ${isSafari}, isStandalone: ${isStandalone}, isNativeApp: ${isNativeApp}`
     );
-    const iOSSafari =
-      iOS && webkit && isSafari && !isStandalone && !isNativeApp;
+    const iOSSafari = iOS && webkit && isSafari && !isStandalone;
 
     if (iOSSafari) {
       this.style.display = "inline-block";
