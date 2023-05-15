@@ -11,4 +11,3 @@
   <add-to-home-screen></add-to-home-screen>
   <script type="module" src="AddToHomeScreen.js"></script>
 </body>
-'''
