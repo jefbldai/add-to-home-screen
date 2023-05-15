@@ -191,36 +191,22 @@ export default class AddToHomeScreen extends HTMLElement {
   }
 
   connectedCallback() {
-    // const ua = window.navigator.userAgent;
-    // const iOS = !!ua.match(/iPad|iPhone|iPod/i);
-    // const webkit = !!ua.match(/WebKit/i);
-    // const isSafari = !!ua.match(/Version\/[\d\.]+.*Safari/);
-    // const isStandalone = window.navigator.standalone;
-    // const isNativeApp = window.navigator.userAgent.includes("gonative");
+    const ua = window.navigator.userAgent;
+    const iOS = !!ua.match(/iPad|iPhone|iPod/i);
+    const webkit = !!ua.match(/WebKit/i);
+    const isSafari = !!ua.match(/Version\/[\d\.]+.*Safari/);
+    const isStandalone = window.navigator.standalone;
+    const isNativeApp = window.navigator.userAgent.includes("gonative");
 
-    // console.log(
-    //   `iOS: ${iOS}, Webkit: ${webkit}, isSafari: ${isSafari}, isStandalone: ${isStandalone}, isNativeApp: ${isNativeApp}`
-    // );
-    // const iOSSafari = iOS && webkit && isSafari && !isStandalone;
+    const iOSSafari =
+      iOS && webkit && isSafari && !isStandalone && !isNativeApp;
 
-    const ua = window.navigator.userAgent,
-      iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i),
-      webkit = !!ua.match(/WebKit/i);
-    iOS &&
-      webkit &&
-      !ua.match(/CriOS/i) &&
-      !navigator.standalone &&
-      ((this.style.display = "inline-block"),
+    if (iOSSafari) {
+      this.style.display = "inline-block";
       this.shadowRoot
         .getElementById("close")
-        .addEventListener("click", this._closeClick));
-
-    // if (iOSSafari) {
-    //   this.style.display = "inline-block";
-    //   this.shadowRoot
-    //     .getElementById("close")
-    //     .addEventListener("click", this._closeClick);
-    // }
+        .addEventListener("click", this._closeClick);
+    }
   }
 
   disconnectedCallback() {
